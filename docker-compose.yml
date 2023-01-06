@@ -1,0 +1,26 @@
+version: "3.2"
+
+services:
+  hilton-reservation-backend:
+    build:
+      context: .
+    container_name: hilton-reservation-backend
+    depends_on:
+      - mongodb
+    environment:
+      PORT: 3002
+    links:
+      - mongodb
+    image: hilton-reservation-backend
+    ports:
+      - "4002:3002"
+
+  mongodb:
+    image: mongo:3.6
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+
